@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Topic from "./Topic";
 
 interface TopicData {
   id: number;
@@ -48,6 +49,15 @@ const TopicsList: React.FC<TopicsListProps> = ({ topics, onDelete }) => {
           ))}
         </select>
       </div>
+      {filteredTopics.map((topic) => (
+        <Topic
+          key={topic.id}
+          category={topic.category}
+          name={topic.name}
+          keywords={topic.keywords}
+          onDelete={() => onDelete(topic.id)}
+        />
+      ))}
     </div>
   );
 };

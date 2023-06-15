@@ -1,0 +1,27 @@
+.add-topic-form {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 5px;
+}
+
+.save-button {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}

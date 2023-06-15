@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import TopicsList from "./components/TopicsList";
+import AddTopicForm from "./components/AddTopicForm";
+import BlogEditor from "./components/BlogEditor";
 
 interface TopicData {
   id: number;
@@ -39,6 +41,8 @@ const App: React.FC = () => {
     <div>
       <h1>TopicHub</h1>
       <TopicsList topics={topics} onDelete={handleDeleteTopic} />
+      <AddTopicForm onAddTopic={handleAddTopic} />
+      <BlogEditor onGenerate={handleGenerateBlog} />
     </div>
   );
 };

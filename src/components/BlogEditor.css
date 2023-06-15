@@ -1,27 +1,39 @@
-.blog-editor {
-  padding: 10px;
+.editor-toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+.editor-container {
+  padding: 8px;
   border: 1px solid #ccc;
-  margin-bottom: 20px;
+  border-radius: 4px;
+  min-height: 200px;
 }
 
-.form-group {
-  margin-bottom: 10px;
+.editor-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-select {
-  width: 100%;
-  padding: 5px;
-}
-
-.generate-button {
+button {
+  padding: 8px 16px;
   background-color: #007bff;
-  color: white;
+  color: #fff;
   border: none;
-  padding: 5px 10px;
+  border-radius: 4px;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+h2 {
+  margin: 0;
+  padding: 8px;
+  font-size: 20px;
+  font-weight: bold;
 }

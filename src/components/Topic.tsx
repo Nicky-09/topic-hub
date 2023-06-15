@@ -1,4 +1,5 @@
 import React from "react";
+import { Card, Tag, Button } from "antd";
 import "./Topic.css";
 
 interface TopicProps {
@@ -15,18 +16,18 @@ const Topic: React.FC<TopicProps> = ({
   onDelete,
 }) => {
   return (
-    <div className="topic">
-      <h3>{name}</h3>
+    <Card
+      title={name}
+      className="topic"
+      extra={<Button onClick={onDelete}>Delete</Button>}
+    >
       <p>Category: {category}</p>
       <ul>
         {keywords.map((keyword, index) => (
-          <li key={index}>{keyword}</li>
+          <Tag key={index}>{keyword}</Tag>
         ))}
       </ul>
-      <button className="delete-button" onClick={onDelete}>
-        Delete
-      </button>
-    </div>
+    </Card>
   );
 };
 

@@ -3,6 +3,7 @@ import { Button, Modal } from "antd";
 import TopicsList from "./components/TopicsList";
 import AddTopicForm from "./components/AddTopicForm";
 import BlogEditor from "./components/BlogEditor";
+import "./App.css";
 
 interface TopicData {
   id: number;
@@ -12,7 +13,33 @@ interface TopicData {
 }
 
 const App: React.FC = () => {
-  const [topics, setTopics] = useState<TopicData[]>([]);
+  const [topics, setTopics] = useState<TopicData[]>([
+    {
+      id: 1,
+      category: "Category1",
+      name: "Topic 1",
+      keywords: ["Keyword 1", "Keyword 2", "Keyword 3"],
+    },
+    {
+      id: 2,
+      category: "Category2",
+      name: "Topic 2",
+      keywords: ["Keyword 4", "Keyword 5", "Keyword 6"],
+    },
+    {
+      id: 3,
+      category: "Category3",
+      name: "Topic 3",
+      keywords: ["Keyword 7", "Keyword 8", "Keyword 9"],
+    },
+    {
+      id: 4,
+      category: "Category4",
+      name: "Topic 4",
+      keywords: ["Keyword 10", "Keyword 11", "Keyword 12"],
+    },
+  ]);
+
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleAddTopic = (
@@ -49,11 +76,13 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="main-container">
       <h1>TopicHub</h1>
-      <TopicsList topics={topics} onDelete={handleDeleteTopic} />
-      <div className="add-topic-button">
-        <Button onClick={showModal}>Add Topic</Button>
+      <div className="topics-container">
+        <TopicsList topics={topics} onDelete={handleDeleteTopic} />
+        <div className="add-topic-button">
+          <Button onClick={showModal}>Add Topic</Button>
+        </div>
       </div>
       <Modal
         title="Add Topic"
@@ -61,8 +90,13 @@ const App: React.FC = () => {
         onCancel={closeModal}
         footer={null}
       >
-        <AddTopicForm onAddTopic={handleAddTopic} onCancel={closeModal} />
+        <AddTopicForm
+          // categories={uniqueCategories}
+          onAddTopic={handleAddTopic}
+          onCancel={closeModal}
+        />
       </Modal>
+
       {/* <BlogEditor onGenerate={handleGenerateBlog} /> */}
     </div>
   );

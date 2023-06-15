@@ -1,62 +1,98 @@
-import React from "react";
-import { Modal, Form, Input, Button } from "antd";
+import React, { useState } from "react";
+import { Form, Input, Select, Button } from "antd";
+
+const { Option } = Select;
 
 interface AddTopicFormProps {
   onAddTopic: (name: string, category: string, keywords: string[]) => void;
   onCancel: () => void;
+  //   categories: string[];
 }
 
 const AddTopicForm: React.FC<AddTopicFormProps> = ({
   onAddTopic,
   onCancel,
+  //   categories,
 }) => {
-  const [form] = Form.useForm();
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const [keywords, setKeywords] = useState<string[]>([]);
 
-  const handleSave = () => {
-    form.validateFields().then((values) => {
-      const { name, category, keywords } = values;
-      const keywordList = keywords
-        .split(",")
-        .map((keyword: string) => keyword.trim());
-      onAddTopic(name, category, keywordList);
-      form.resetFields();
-      onCancel();
-    });
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+
+  const handleCategoryChange = (value: string) => {
+    setCategory(value);
+  };
+
+  const handleKeywordChange = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const value = (e.target as HTMLInputElement).value.trim();
+    if (value !== "") {
+      setKeywords((prevKeywords) => [...prevKeywords, value]);
+      (e.target as HTMLInputElement).value = "";
+    }
+  };
+
+  const handleKeywordDelete = (keyword: string) => {
+    setKeywords((prevKeywords) => prevKeywords.filter((k) => k !== keyword));
+  };
+
+  const handleAddTopic = () => {
+    onAddTopic(name, category, keywords);
+    setName("");
+    setCategory("");
+    setKeywords([]);
   };
 
   return (
-    <Form form={form} layout="vertical">
-      <Form.Item
-        label="Name"
-        name="name"
-        rules={[{ required: true, message: "Please enter the topic name" }]}
-      >
-        <Input />
+    <Form>
+      <Form.Item label="Name" required>
+        <Input value={name} onChange={handleNameChange} />
       </Form.Item>
-      <Form.Item
-        label="Category"
-        name="category"
-        rules={[{ required: true, message: "Please enter the category" }]}
-      >
-        <Input />
+      <Form.Item label="Category" required>
+        {/* <Select value={category} onChange={handleCategoryChange}>
+          {categories.map((category) => (
+            <Option key={category} value={category}>
+              {category}
+            </Option>
+          ))}
+        </Select> */}
       </Form.Item>
-      <Form.Item
-        label="Keywords"
-        name="keywords"
-        rules={[
-          { required: true, message: "Please enter at least one keyword" },
-        ]}
-      >
-        <Input />
+      <Form.Item label="Keywords">
+        <Input
+          placeholder="Enter keyword and press Enter"
+          onPressEnter={handleKeywordChange}
+        />
       </Form.Item>
+      {keywords.length > 0 && (
+        <div>
+          <strong>Keywords:</strong>
+          <ul>
+            {keywords.map((keyword) => (
+              <li key={keyword}>
+                {keyword}
+                <Button
+                  type="link"
+                  size="small"
+                  onClick={() => handleKeywordDelete(keyword)}
+                >
+                  Remove
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       <Form.Item>
-        <Button key="save" type="primary" onClick={handleSave}>
-          Save
+        <Button
+          type="primary"
+          onClick={handleAddTopic}
+          disabled={!name || !category}
+        >
+          Add Topic
         </Button>
-        <Button key="cancel" onClick={onCancel}>
-          Cancel
-        </Button>
-        ,
+        <Button onClick={onCancel}>Cancel</Button>
       </Form.Item>
     </Form>
   );

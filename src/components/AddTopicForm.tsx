@@ -17,14 +17,19 @@ const AddTopicForm: React.FC<AddTopicFormProps> = ({
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [keywords, setKeywords] = useState<string[]>([]);
+  console.log({ keywords });
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
 
-  const handleCategoryChange = (value: string) => {
-    setCategory(value);
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCategory(e.target.value);
   };
+
+  //   const handleCategoryChange = (value: string) => {
+  //     setCategory(value);
+  //   };
 
   const handleKeywordChange = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value.trim();
@@ -51,6 +56,7 @@ const AddTopicForm: React.FC<AddTopicFormProps> = ({
         <Input value={name} onChange={handleNameChange} />
       </Form.Item>
       <Form.Item label="Category" required>
+        <Input value={category} onChange={handleCategoryChange} />
         {/* <Select value={category} onChange={handleCategoryChange}>
           {categories.map((category) => (
             <Option key={category} value={category}>
@@ -65,7 +71,7 @@ const AddTopicForm: React.FC<AddTopicFormProps> = ({
           onPressEnter={handleKeywordChange}
         />
       </Form.Item>
-      {keywords.length > 0 && (
+      {/* {keywords.length > 0 && (
         <div>
           <strong>Keywords:</strong>
           <ul>
@@ -83,7 +89,7 @@ const AddTopicForm: React.FC<AddTopicFormProps> = ({
             ))}
           </ul>
         </div>
-      )}
+      )} */}
       <Form.Item>
         <Button
           type="primary"

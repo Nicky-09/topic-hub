@@ -16,27 +16,27 @@ const App: React.FC = () => {
   const [topics, setTopics] = useState<TopicData[]>([
     {
       id: 1,
-      category: "Category1",
-      name: "Topic 1",
-      keywords: ["Keyword 1", "Keyword 2", "Keyword 3"],
+      category: "Technology",
+      name: "Exploring Artificial Intelligence and its Applications",
+      keywords: ["Machine Learning", "Deep Learning", "Neural Networks"],
     },
     {
       id: 2,
-      category: "Category2",
-      name: "Topic 2",
-      keywords: ["Keyword 4", "Keyword 5", "Keyword 6"],
+      category: "Science",
+      name: "Understanding Quantum Physics: The Realm of Possibilities",
+      keywords: ["Quantum Mechanics", "Superposition", "Entanglement"],
     },
     {
       id: 3,
-      category: "Category3",
-      name: "Topic 3",
-      keywords: ["Keyword 7", "Keyword 8", "Keyword 9"],
+      category: "Sports",
+      name: "The Excitement of Football: Goals, Passion, and Teamwork",
+      keywords: ["Soccer", "FIFA World Cup", "Premier League"],
     },
     {
       id: 4,
-      category: "Category4",
-      name: "Topic 4",
-      keywords: ["Keyword 10", "Keyword 11", "Keyword 12"],
+      category: "Music",
+      name: "Rock Music Through the Ages: Legends, Anthems, and Guitar Riffs",
+      keywords: ["Classic Rock", "Guitar Solos", "Rock Bands"],
     },
   ]);
 
@@ -80,9 +80,9 @@ const App: React.FC = () => {
       <h1>TopicHub</h1>
       <div className="topics-container">
         <TopicsList topics={topics} onDelete={handleDeleteTopic} />
-        <div className="add-topic-button">
+        {/* <div className="add-topic-button">
           <Button onClick={showModal}>Add Topic</Button>
-        </div>
+        </div> */}
       </div>
       <Modal
         title="Add Topic"

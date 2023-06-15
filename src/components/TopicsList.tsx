@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button, Row, Col } from "antd";
 import Topic from "./Topic";
 import "./TopicsList.css";
 
@@ -40,24 +41,30 @@ const TopicsList: React.FC<TopicsListProps> = ({ topics, onDelete }) => {
       <h2>Topics</h2>
       <div className="topics-list">
         <div className="filter-bar">
-          <label htmlFor="category-filter">Filter by Category:</label>
-          <div className="category-buttons">
-            <button
-              className={selectedCategory === "" ? "active" : ""}
-              onClick={() => handleCategoryChange("")}
-            >
-              All
-            </button>
-            {uniqueCategories.map((category) => (
-              <button
-                key={category}
-                className={selectedCategory === category ? "active" : ""}
-                onClick={() => handleCategoryChange(category)}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
+          <Row gutter={16} align="middle">
+            <Col span={8}>
+              <label htmlFor="category-filter">Filter by Category:</label>
+            </Col>
+            <Col span={16}>
+              <div className="category-buttons">
+                <Button
+                  type={selectedCategory === "" ? "primary" : "default"}
+                  onClick={() => handleCategoryChange("")}
+                >
+                  All
+                </Button>
+                {uniqueCategories.map((category) => (
+                  <Button
+                    key={category}
+                    type={selectedCategory === category ? "primary" : "default"}
+                    onClick={() => handleCategoryChange(category)}
+                  >
+                    {category}
+                  </Button>
+                ))}
+              </div>
+            </Col>
+          </Row>
         </div>
         <div className="topic-list">
           {filteredTopics.map((topic) => (

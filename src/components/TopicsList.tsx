@@ -23,13 +23,7 @@ const TopicsList: React.FC<TopicsListProps> = ({ topics, onDelete }) => {
   };
 
   const uniqueCategories = Array.from(
-    new Set([
-      ...topics.map((topic) => topic.category),
-      "Category1",
-      "Category2",
-      "Category3",
-      "Category4",
-    ])
+    new Set([...topics.map((topic) => topic.category)])
   );
 
   const filteredTopics = selectedCategory
@@ -64,6 +58,9 @@ const TopicsList: React.FC<TopicsListProps> = ({ topics, onDelete }) => {
                 ))}
               </div>
             </Col>
+            <div className="add-topic-button">
+              <Button>Add Topic</Button>
+            </div>
           </Row>
         </div>
         <div className="topic-list">

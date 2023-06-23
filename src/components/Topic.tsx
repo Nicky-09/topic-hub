@@ -30,9 +30,13 @@ const Topic: React.FC<TopicProps> = ({
         ))}
       </div>
       <Space align="end">
-        <Button type="primary" icon={<DeleteOutlined />} onClick={onDelete}>
-          Delete
-        </Button>
+        <Button
+          danger
+          type="primary"
+          className="delete-button"
+          icon={<DeleteOutlined />}
+          onClick={onDelete}
+        ></Button>
       </Space>
     </div>
   );

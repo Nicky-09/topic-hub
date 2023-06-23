@@ -78,11 +78,12 @@ const App: React.FC = () => {
   return (
     <div className="main-container">
       <h1>TopicHub</h1>
+
       <div className="topics-container">
         <TopicsList topics={topics} onDelete={handleDeleteTopic} />
-        {/* <div className="add-topic-button">
+        <div className="add-topic-button">
           <Button onClick={showModal}>Add Topic</Button>
-        </div> */}
+        </div>
       </div>
       <Modal
         title="Add Topic"
